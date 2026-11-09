@@ -2,10 +2,11 @@
   "name": "project_score-tracker",
   "version": "1.0.0",
   "private": true,
+  "type":"module",
   "description": "REST API to track score of games with your friends.",
   "main": "index.js",
   "scripts": {
-    "build": "npx tsc",
+    "build": "tsc",
     "start": "node dist/index.js"
   },
   "repository": {
@@ -20,6 +21,11 @@
   },
   "homepage": "https://github.com/Zakyaru/Project_Score-Tracker#readme",
   "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.6",
     "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "express": "^5.3.0"
   }
 }
