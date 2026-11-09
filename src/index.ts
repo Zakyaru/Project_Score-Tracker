@@ -8,9 +8,9 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.get('/health', (_req, res) => {
-    res.json({ status : "ok2" })
+  res.json({ status: 'ok2' });
 });
 
 app.listen(port, () => {
-    console.log(`server is listening on port : ${port}`)
+  console.log(`server is listening on port : ${port}`);
 });
