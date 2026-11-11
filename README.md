@@ -9,3 +9,4 @@ REST API to track score of games with your friends.
 - _fix:_ when fixing a bug
 - _docs:_ when modifying docs
 - _chore:_ when adding config or dependencies
+- _chore:_ when adding a test
