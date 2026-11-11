@@ -6,7 +6,8 @@
   "description": "REST API to track score of games with your friends.",
   "main": "server.js",
   "scripts": {
-    "build": "tsc",
+    "prebuild": "node -e \"require('fs').rmSync('dist', { recursive: true, force: true })\"",
+    "build": "tsc -p tsconfig.build.json",
     "start": "node dist/server.js",
     "dev": "tsx watch --env-file=.env src/server.ts",
     "test": "vitest run",
