@@ -3,7 +3,7 @@ import { winRate } from './win-rate.js';
 
 describe('winRate', () => {
   it('returns the win percentage', () => {
-    expect(winRate('3', 4)).toBe(75);
+    expect(winRate(3, 4)).toBe(75);
   });
 
   it('rounds to the nearest integer', () => {
