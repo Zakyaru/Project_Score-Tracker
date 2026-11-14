@@ -20,7 +20,7 @@ export default defineConfig([
   {
     languageOptions: {
       parserOptions: {
-        projectService: true,
+        projectService: { allowDefaultProject: ['prisma.config.ts'] },
         tsconfigRootDir: import.meta.dirname,
       },
     },
