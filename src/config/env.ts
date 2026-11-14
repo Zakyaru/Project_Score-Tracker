@@ -2,7 +2,8 @@ import * as z from 'zod';
 
 // 1. Le schéma : décrit ce qu'on attend, sans aucune valeur
 const envSchema = z.object({
-  PORT: z.coerce.number().int().positive(),
+  PORT: z.coerce.number().int().positive().max(65535),
+  DATABASE_URL: z.url({ protocol: /^postgresql$/ }),
 });
 
 // 2. Le parsing : on confronte les vraies données au schéma
