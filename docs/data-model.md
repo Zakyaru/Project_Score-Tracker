@@ -72,3 +72,4 @@ erDiagram
 - **Stats are computed, never stored**: a single source of truth (matches and participations) avoids inconsistencies.
 - **`Match` has no `groupId`**: the group is derived from the game, to avoid two paths that could contradict each other.
 - **Join tables use composite primary keys**: the database itself prevents duplicate memberships and participations.
+- **Foreign keys are indexed**: most queries filter by them, and PostgreSQL does not index them automatically. Composite keys put the most-queried column first.

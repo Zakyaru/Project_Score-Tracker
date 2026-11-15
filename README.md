@@ -20,32 +20,38 @@ Detailed user stories: [docs/user-stories.md](docs/user-stories.md)
 - **Runtime**: Node.js 22, TypeScript, Express
 - **Validation**: Zod
 - **Testing**: Vitest
+- **Database**: PostgreSQL 18 (Docker Compose), Prisma ORM 7
 - **Quality**: ESLint, Prettier, GitHub Actions CI
-- **Planned**: PostgreSQL, Prisma, Docker, deployment on a VPS behind Nginx
+- **Planned**: Docker for the app, deployment on a VPS behind Nginx
 
 ## Getting started
 
-Prerequisites: Node.js 22
+Prerequisites: Node.js 22, Docker
 
 ```bash
 npm ci
-cp .env.example .env
+cp .env.example .env        # then fill in the values
+docker compose up -d        # start PostgreSQL
+npm run db:migrate          # apply migrations
+npm run db:generate         # generate the Prisma client
 npm run dev
 ```
 
 ## Scripts
 
-| Script                 | Description                       |
-| ---------------------- | --------------------------------- |
-| `npm run dev`          | Start the server in watch mode    |
-| `npm run build`        | Compile TypeScript to `dist/`     |
-| `npm start`            | Run the compiled server           |
-| `npm test`             | Run the tests once                |
-| `npm run test:watch`   | Run the tests in watch mode       |
-| `npm run lint`         | Lint the code                     |
-| `npm run typecheck`    | Type-check without emitting files |
-| `npm run format`       | Format the code                   |
-| `npm run format:check` | Check formatting                  |
+| Script                 | Description                               |
+| ---------------------- | ----------------------------------------- |
+| `npm run dev`          | Start the server in watch mode            |
+| `npm run build`        | Compile TypeScript to `dist/`             |
+| `npm start`            | Run the compiled server                   |
+| `npm test`             | Run the tests once                        |
+| `npm run test:watch`   | Run the tests in watch mode               |
+| `npm run lint`         | Lint the code                             |
+| `npm run typecheck`    | Type-check without emitting files         |
+| `npm run format`       | Format the code                           |
+| `npm run format:check` | Check formatting                          |
+| `npm run db:migrate`   | Create and apply migrations (development) |
+| `npm run db:generate`  | Generate the Prisma client                |
 
 ## Roadmap
 
@@ -54,7 +60,7 @@ npm run dev
 - [x] Project setup (TypeScript, Express, ESLint, Prettier)
 - [x] Test setup and CI
 - [x] Scoping (user stories)
-- [ ] Data model and database (PostgreSQL + Prisma)
+- [x] Data model and database (PostgreSQL + Prisma)
 - [ ] Authentication
 - [ ] Groups and members
 - [ ] Games and matches

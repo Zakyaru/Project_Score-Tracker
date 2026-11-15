@@ -8,6 +8,8 @@ on:
 jobs:
   check:
     runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: postgresql://adminaen:1MDP2postgres1998!@localhost:5432/scoreTracker
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
@@ -15,6 +17,7 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - run: npm run db:generate
       - run: npm run format:check
       - run: npm run lint
       - run: npm run typecheck
