@@ -11,3 +11,74 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model User {
+  id              String          @id @default(uuid())
+  username        String          @unique
+  passwordHash    String
+  createdAt       DateTime        @default(now())
+  ownedGroups     Group[]
+  memberships     Membership[]
+  authoredMatches Match[]
+  participations  Participation[]
+}
+
+model Group {
+  id          String       @id @default(uuid())
+  name        String
+  createdAt   DateTime     @default(now())
+  ownerId     String
+  owner       User         @relation(fields: [ownerId], references: [id], onDelete: Restrict)
+  memberships Membership[]
+  games       Game[]
+
+  @@index([ownerId])
+}
+
+model Membership {
+  userId   String
+  groupId  String
+  joinedAt DateTime @default(now())
+  user     User     @relation(fields: [userId], references: [id], onDelete: Restrict)
+  group    Group    @relation(fields: [groupId], references: [id], onDelete: Cascade)
+
+  @@id([userId, groupId])
+  @@index([groupId])
+}
+
+model Game {
+  id        String   @id @default(uuid())
+  name      String
+  createdAt DateTime @default(now())
+  groupId   String
+  group     Group    @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  matches   Match[]
+
+  @@unique([groupId, name])
+}
+
+model Match {
+  id             String          @id @default(uuid())
+  playedAt       DateTime        @db.Date
+  createdAt      DateTime        @default(now())
+  gameId         String
+  authorId       String
+  game           Game            @relation(fields: [gameId], references: [id], onDelete: Restrict)
+  author         User            @relation(fields: [authorId], references: [id], onDelete: Restrict)
+  participations Participation[]
+
+  @@index([gameId])
+  @@index([authorId])
+}
+
+model Participation {
+  userId   String
+  matchId  String
+  isWinner Boolean
+  score    Int?
+  match    Match   @relation(fields: [matchId], references: [id], onDelete: Cascade)
+  user     User    @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  @@id([matchId, userId])
+  @@index([userId])
+}

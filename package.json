@@ -15,7 +15,9 @@
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "db:migrate": "prisma migrate dev",
+    "db:generate": "prisma generate"
   },
   "repository": {
     "type": "git",
