@@ -13,7 +13,11 @@ REST API to track board game results within groups of friends: record matches, k
 - Match history with filters and pagination
 - Group leaderboard (wins, matches played, win rate)
 
-Detailed user stories: [docs/user-stories.md](docs/user-stories.md)
+## Documentation
+
+- [User stories](docs/user-stories.md): what the API does, with acceptance criteria
+- [Data model](docs/data-model.md): entity-relationship diagram and design decisions
+- [API routes](docs/api-routes.md): endpoints, status codes and error format
 
 ## Tech stack
 
@@ -59,7 +63,7 @@ npm run dev
 
 - [x] Project setup (TypeScript, Express, ESLint, Prettier)
 - [x] Test setup and CI
-- [x] Scoping (user stories)
+- [x] Scoping (user stories, data model, API routes)
 - [x] Data model and database (PostgreSQL + Prisma)
 - [ ] Authentication
 - [ ] Groups and members
